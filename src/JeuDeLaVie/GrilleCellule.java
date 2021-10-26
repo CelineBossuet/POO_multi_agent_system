@@ -33,7 +33,7 @@ public class GrilleCellule implements Simulable {
         for(int i = 0; i< this.n; i++){
             for(int j = 0; j < this.m; j++){
                 this.tab[i][j] = new Cellule(i,j,false);
-                window.addGraphicalElement(new Rectangle(10*i, 10* j, Color.BLACK, Color.WHITE, 10));
+                window.addGraphicalElement(new Rectangle(10+10*i, 10+10* j, Color.BLACK, Color.WHITE, 10));
             }
         }
     }
@@ -101,9 +101,9 @@ public class GrilleCellule implements Simulable {
         for (int i = 0; i < this.n ; i++) {
             for (int j = 0; j < this.m; j++) {
                 if(this.tab[i][j].isEstVivante()){
-                    window.addGraphicalElement(new Rectangle(10*j, 10* i, Color.BLACK, Color.BLACK, 10));
+                    window.addGraphicalElement(new Rectangle(10+10*j, 10+10* i, Color.BLACK, Color.BLACK, 10));
                 }else{
-                    window.addGraphicalElement(new Rectangle(10*j, 10* i, Color.BLACK, Color.WHITE, 10));
+                    window.addGraphicalElement(new Rectangle(10+10*j, 10+10* i, Color.BLACK, Color.WHITE, 10));
                 }
             }
 
@@ -116,12 +116,12 @@ public class GrilleCellule implements Simulable {
         for(int i = 0; i< this.n; i++){
             for(int j = 0; j < this.m; j++){
                 this.tab[i][j] = new Cellule(i,j,false);
-                window.addGraphicalElement(new Rectangle(10*j, 10* i, Color.BLACK, Color.WHITE, 10));
+                window.addGraphicalElement(new Rectangle(10+10*j, 10+10* i, Color.BLACK, Color.WHITE, 10));
             }
         }
         for (int i = 0; i < this.init[0].length; i++) {
             this.tab[this.init[0][i]][this.init[1][i]].setEstVivant(true);
-            window.addGraphicalElement(new Rectangle(10*this.init[1][i], 10* this.init[0][i], Color.BLACK, Color.BLACK, 10));
+            window.addGraphicalElement(new Rectangle(10+10*this.init[1][i], 10+10* this.init[0][i], Color.BLACK, Color.BLACK, 10));
         }
     }
 }
