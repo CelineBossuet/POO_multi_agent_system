@@ -3,6 +3,7 @@ package JeuDeLaVie;
 import gui.GUISimulator;
 import gui.Rectangle;
 import gui.Simulable;
+import gui.Text;
 
 import java.awt.*;
 
@@ -13,19 +14,32 @@ public class GrilleCellule implements Simulable {
     private Cellule[][] tab;
     private final GUISimulator window;
     private  final int[][] init;
+    private int nbGeneration;
 
 
-    public GrilleCellule(int n, int m, gui.GUISimulator window, boolean start, int[][] init) {
+    public GrilleCellule(int n, int m, GUISimulator window, boolean start, int[][] init, int nbGeneration) {
         this.n = n;
         this.m = m;
         this.tab = new Cellule[n][m];
         this.window = window;
         this.init = init;
+        this.nbGeneration = nbGeneration;
         if(start) {
+            this.nbGeneration=0;
             this.restart();
+
         }else{
+            this.setNbGeneration(nbGeneration);
             this.restartVierge();
         }
+    }
+
+    public void setNbGeneration(int nbGeneration) {
+        this.nbGeneration = nbGeneration ;
+    }
+
+    public int getNbGeneration(){
+        return nbGeneration;
     }
 
     private void restartVierge() {
@@ -70,7 +84,7 @@ public class GrilleCellule implements Simulable {
     }
 
     GrilleCellule nextStep(){
-        GrilleCellule new_grille = new GrilleCellule(this.n, this.m, this.window, false, this.init);
+        GrilleCellule new_grille = new GrilleCellule(this.n, this.m, this.window, false, this.init, this.getNbGeneration());
         for (int i = 0; i < this.n; i++){
             for(int j = 0; j < this.m; j++){
                 if(this.tab[i][j].isEstVivante()){
@@ -96,18 +110,17 @@ public class GrilleCellule implements Simulable {
 
     @Override
     public void next() {
+        this.setNbGeneration(this.getNbGeneration() + 1);
         GrilleCellule new_grille_cellule=this.nextStep();
         this.tab = new_grille_cellule.tab;
         for (int i = 0; i < this.n ; i++) {
             for (int j = 0; j < this.m; j++) {
                 if(this.tab[i][j].isEstVivante()){
                     window.addGraphicalElement(new Rectangle(10+10*j, 10+10* i, Color.BLACK, Color.BLACK, 10));
-                }else{
-                    window.addGraphicalElement(new Rectangle(10+10*j, 10+10* i, Color.BLACK, Color.WHITE, 10));
                 }
             }
-
         }
+        window.addGraphicalElement(new Text(10+10*this.m/2, 50+10*this.n, Color.BLACK, "Génération numéro :" + this.nbGeneration));
     }
 
     @Override
@@ -123,5 +136,6 @@ public class GrilleCellule implements Simulable {
             this.tab[this.init[0][i]][this.init[1][i]].setEstVivant(true);
             window.addGraphicalElement(new Rectangle(10+10*this.init[1][i], 10+10* this.init[0][i], Color.BLACK, Color.BLACK, 10));
         }
+        window.addGraphicalElement(new Text(10+10*this.m/2, 50+10*this.n, Color.BLACK, "Génération numéro :" + this.nbGeneration));
     }
 }

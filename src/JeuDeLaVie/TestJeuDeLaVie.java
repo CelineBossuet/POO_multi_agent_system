@@ -16,8 +16,8 @@ public class TestJeuDeLaVie {
         int mSim = 500/10;
         int[][] init = {{2,2,2,2,2,2,2,2},{2,3,4,5,6,7,8,9,10}}; //etat stationnaire
         //int[][] init = {{2,2,2},{2,3,4}}; //etat clignotant
-        GUISimulator gui = new GUISimulator(n+10, m+10, Color.BLUE);
-        gui.setSimulable(new GrilleCellule(nSim, mSim, gui, true, init));
+        GUISimulator gui = new GUISimulator(n+10, m+100, Color.BLUE);
+        gui.setSimulable(new GrilleCellule(nSim, mSim, gui, true, init,0));
     }
 
 }
