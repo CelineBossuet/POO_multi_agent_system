@@ -7,23 +7,17 @@ import gui.Text;
 
 import java.awt.*;
 
-public class GrilleCellule implements Simulable {
+public class GrilleCellule extends GrilleCelluleGeneral implements Simulable {
 
-    private final int n;
-    private final int m;
     private Cellule[][] tab;
-    private final GUISimulator window;
     private  final int[][] init;
     private int nbGeneration;
 
 
     public GrilleCellule(int n, int m, GUISimulator window, boolean start, int[][] init, int nbGeneration) {
-        this.n = n;
-        this.m = m;
+        super(n, m, window, nbGeneration);
         this.tab = new Cellule[n][m];
-        this.window = window;
         this.init = init;
-        this.nbGeneration = nbGeneration;
         if(start) {
             this.nbGeneration=0;
             this.restart();
@@ -34,16 +28,9 @@ public class GrilleCellule implements Simulable {
         }
     }
 
-    public void setNbGeneration(int nbGeneration) {
-        this.nbGeneration = nbGeneration ;
-    }
-
-    public int getNbGeneration(){
-        return nbGeneration;
-    }
-
-    private void restartVierge() {
-        this.window.reset();
+    @Override
+    protected void restartVierge() {
+        super.restartVierge();
         for(int i = 0; i< this.n; i++){
             for(int j = 0; j < this.m; j++){
                 this.tab[i][j] = new Cellule(i,j,false);
@@ -120,7 +107,7 @@ public class GrilleCellule implements Simulable {
                 }
             }
         }
-        window.addGraphicalElement(new Text(10+10*this.m/2, 50+10*this.n, Color.BLACK, "Génération numéro :" + this.nbGeneration));
+        window.addGraphicalElement(new Text(10+10*this.m/2, 50+10*this.n, Color.BLACK, "Génération numéro :" + this.getNbGeneration()));
     }
 
     @Override

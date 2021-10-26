@@ -1,23 +1,13 @@
 package JeuDeLaVie;
 
-public class Cellule {
-    private int x;
-    private int y;
+public class Cellule extends CelluleGeneral {
     private boolean estVivante;
 
     public Cellule(int x, int y, boolean estVivante) {
-        this.x = x;
-        this.y = y;
+        super(x,y);
         this.estVivante = estVivante;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
 
     public boolean isEstVivante() {
         return estVivante;
@@ -29,10 +19,6 @@ public class Cellule {
 
     @Override
     public String toString() {
-        return "La cellule de coordonnées (" +
-                "(x=" + x +
-                ", y=" + y +
-                "), estVivante?=" + estVivante +
-                '}';
+        return super.toString() + "estVivante?=" + estVivante;
     }
 }
