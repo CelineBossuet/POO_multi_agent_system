@@ -1,3 +1,5 @@
+package balls;
+
 import java.awt.Point;
 
 public class Balls {

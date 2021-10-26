@@ -1,3 +1,5 @@
+package balls;
+
 public class TestBalls {
     public static void main(String[] args) {
 
