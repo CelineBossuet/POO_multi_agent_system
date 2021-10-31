@@ -1,24 +1,15 @@
 package JeuDeLaVie;
 
 public class Cellule extends CelluleGeneral {
-    private boolean estVivante;
 
-    public Cellule(int x, int y, boolean estVivante) {
-        super(x,y);
-        this.estVivante = estVivante;
+
+    public Cellule(int x, int y,  int etat) {
+        super(x,y,2, etat);
     }
 
-
-    public boolean isEstVivante() {
-        return estVivante;
-    }
-
-    public void setEstVivant(boolean estVivante) {
-        this.estVivante = estVivante;
-    }
 
     @Override
     public String toString() {
-        return super.toString() + "estVivante?=" + estVivante;
+        return super.toString() + "estVivante?=" + this.getEtatCourant();
     }
 }
