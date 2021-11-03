@@ -1,6 +1,7 @@
 package boids;
 
 import java.awt.Point;
+
 public class Vector extends Point{
 
     public Vector(int x, int y){
