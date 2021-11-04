@@ -16,7 +16,7 @@ public class GrilleCellule extends GrilleCelluleGeneral implements Simulable {
     public GrilleCellule(int n, int m, GUISimulator window, boolean start, int[][] init, int nbGeneration) {
         super(n, m, window, nbGeneration);
         this.init = init;
-        this.tab = new Cellule[n][m];
+        this.tab = new CelluleGeneral[n][m];
         if(start) {
             this.nbGeneration=0;
             this.restart();

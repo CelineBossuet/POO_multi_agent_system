@@ -18,7 +18,7 @@ public class GrilleCelluleImmigration extends GrilleCelluleGeneral implements Si
         super(n, m, window, nbGeneration);
         this.init = init;
         this.nbEtat = nbEtat;
-        this.tab = new CelluleImigration[n][m];
+        this.tab = new CelluleGeneral[n][m];
         if(this.table_couleur.length < nbEtat){
             System.out.println("Trop d'état pour l'implémentation graphique");
             System.exit(1);
