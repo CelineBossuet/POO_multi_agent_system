@@ -25,16 +25,6 @@ public class GrilleSchelling extends GrilleCelluleGeneral implements Simulable {
         this.K=K;
         if(start){
             this.restart();
-            for (int i = 0; i < this.n; i++) {
-                for (int j = 0; j < this.m; j++) {
-                    if(this.tab[i][j].getEtatCourant() == 0){
-                        this.file.add(this.tab[i][j]);
-                    }
-                }
-            }
-        }else{
-            this.restartViergeSchelling(tab);
-            this.file = file;
         }
     }
 
@@ -97,7 +87,7 @@ public class GrilleSchelling extends GrilleCelluleGeneral implements Simulable {
 
     @Override
     public void next() {
-        this.restartViergeSchelling(this.tab);
+        this.window.reset();
         this.setNbGeneration(this.getNbGeneration() + 1);
         this.nextStep();
         for (int i = 0; i < this.n; i++) {
@@ -106,11 +96,12 @@ public class GrilleSchelling extends GrilleCelluleGeneral implements Simulable {
             }
         }
         window.addGraphicalElement(new Text(10+10*this.m/2, 50+10*this.n, Color.BLACK, "Génération numéro :"+ this.getNbGeneration()));
+        System.out.println(this.file.size());
     }
 
     @Override
     public void restart() {
-        super.restartVierge();
+        this.window.reset();
         this.setNbGeneration(0);
         for (int i = 0; i < this.n; i++) {
             for (int j = 0; j < this.m; j++) {
@@ -118,16 +109,15 @@ public class GrilleSchelling extends GrilleCelluleGeneral implements Simulable {
                 this.window.addGraphicalElement(new Rectangle(10+10*j, 10+10* i, Color.BLACK, this.table_couleur[this.tab[i][j].getEtatCourant()], 10));
             }
         }
-        window.addGraphicalElement(new Text(10+10*this.m/2, 50+10*this.n, Color.BLACK, "Génération numéro :" + this.getNbGeneration()));
-    }
-
-
-    protected void restartViergeSchelling(CelluleGeneral[][] tab) {
-        super.restartVierge();
+        this.file= new LinkedList<>();
         for (int i = 0; i < this.n; i++) {
             for (int j = 0; j < this.m; j++) {
-                this.tab[i][j] = new CelluleGeneral(i, j, this.nbEtat, tab[i][j].getEtatCourant());
+                if(this.tab[i][j].getEtatCourant() == 0){
+                    this.file.add(this.tab[i][j]);
+                }
             }
         }
+        window.addGraphicalElement(new Text(10+10*this.m/2, 50+10*this.n, Color.BLACK, "Génération numéro :" + this.getNbGeneration()));
+        System.out.println(this.file.size());
     }
 }
