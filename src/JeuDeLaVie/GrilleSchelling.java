@@ -44,63 +44,62 @@ public class GrilleSchelling extends GrilleCelluleGeneral implements Simulable {
         int y = cel.getY();
         int compteur = 0;
         if(this.tab[(x-1+this.n)%this.n][(y-1 +this.n)%this.m].getEtatCourant()!= sameState && this.tab[(x-1+this.n)%this.n][(y-1 +this.n)%this.m].getEtatCourant()!= 0 ){
-            compteur+=1;
+            compteur++;
         }
         if(this.tab[(x)%this.n][(y-1+this.n)%this.m].getEtatCourant()!= sameState && this.tab[(x)%this.n][(y-1+this.n)%this.m].getEtatCourant() != 0){
-            compteur+=1;
+            compteur++;
         }
         if(this.tab[(x+1)%this.n][(y-1+this.n)%this.m].getEtatCourant()!= sameState && this.tab[(x+1)%this.n][(y-1+this.n)%this.m].getEtatCourant() != 0){
-            compteur+=1;
+            compteur++;
         }
         if(this.tab[(x-1+this.n)%this.n][(y)%this.m].getEtatCourant()!= sameState && this.tab[(x-1+this.n)%this.n][(y)%this.m].getEtatCourant() != 0){
-            compteur+=1;
+            compteur++;
         }
         if(this.tab[(x+1)%this.n][(y)%this.m].getEtatCourant()!= sameState && this.tab[(x+1)%this.n][(y)%this.m].getEtatCourant()!= 0){
-            compteur+=1;
+            compteur++;
         }
         if(this.tab[(x-1+this.n)%this.n][(y+1)%this.m].getEtatCourant()!= sameState && this.tab[(x-1+this.n)%this.n][(y+1)%this.m].getEtatCourant()!= 0){
-            compteur+=1;
+            compteur++;
         }
         if(this.tab[(x)%this.n][(y+1)%this.m].getEtatCourant()!= sameState && this.tab[(x)%this.n][(y+1)%this.m].getEtatCourant()!= 0){
-            compteur+=1;
+            compteur++;
         }
         if(this.tab[(x+1)%this.n][(y+1)%this.m].getEtatCourant()!= sameState && this.tab[(x+1)%this.n][(y+1)%this.m].getEtatCourant()!= 0){
-            compteur+=1;
+            compteur++;
         }
         return compteur;
 
     }
 
-    GrilleSchelling nextStep() {
-        GrilleSchelling new_grille = new GrilleSchelling(this.n, this.m, this.window, this.getNbGeneration(), this.nbEtat, this.init, false,this.file, this.K, this.tab);
+    void nextStep() {
         for (int i = 0; i < this.n; i++) {
             for (int j = 0; j < this.m; j++) {
                 if(this.tab[i][j].getEtatCourant() != 0) {
-                    if (getNbVoisinDiff(this.tab[i][j]) >= new_grille.K) {
-                        CelluleGeneral newLocation = new_grille.file.remove();
-                        while (this.getNbVoisinDiff(newLocation) >= new_grille.K) {
-                            new_grille.file.add(newLocation);
-                            newLocation = new_grille.file.remove();
+                    if (getNbVoisinDiff(this.tab[i][j]) >= this.K) {
+                        CelluleGeneral newLocation = this.file.remove();
+                        CelluleGeneral sent = newLocation;
+                        while (this.getNbVoisinDiff(newLocation) >= this.K) {
+                            this.file.add(newLocation);
+                            newLocation = this.file.remove();
+                            if (newLocation == sent){
+                                break;
+                            }
                         }
-                        new_grille.tab[newLocation.getX()][newLocation.getY()] = newLocation;
-                        new_grille.tab[newLocation.getX()][newLocation.getY()].setEtatCourant(this.tab[i][j].getEtatCourant());
+                        this.tab[newLocation.getX()][newLocation.getY()] = newLocation;
+                        this.tab[newLocation.getX()][newLocation.getY()].setEtatCourant(this.tab[i][j].getEtatCourant());
                         this.tab[i][j].setEtatCourant(0);
-                        new_grille.tab[i][j].setEtatCourant(0);
-                        new_grille.file.add(this.tab[i][j]);
-                    } else {
-                        new_grille.tab[i][j].setEtatCourant((this.tab[i][j].getEtatCourant()));
+                        this.file.add(this.tab[i][j]);
                     }
                 }
             }
         }
-        return new_grille;
     }
 
     @Override
     public void next() {
+        this.restartViergeSchelling(this.tab);
         this.setNbGeneration(this.getNbGeneration() + 1);
-        GrilleSchelling new_grille_cellule=this.nextStep();
-        this.tab = new_grille_cellule.tab;
+        this.nextStep();
         for (int i = 0; i < this.n; i++) {
             for (int j = 0; j < this.m; j++) {
                 window.addGraphicalElement(new Rectangle(10+10*j, 10+10* i,  Color.BLACK, this.table_couleur[this.tab[i][j].getEtatCourant()], 10));
@@ -127,7 +126,7 @@ public class GrilleSchelling extends GrilleCelluleGeneral implements Simulable {
         super.restartVierge();
         for (int i = 0; i < this.n; i++) {
             for (int j = 0; j < this.m; j++) {
-                this.tab[i][j] = new CelluleImigration(i, j, this.nbEtat, tab[i][j].getEtatCourant());
+                this.tab[i][j] = new CelluleGeneral(i, j, this.nbEtat, tab[i][j].getEtatCourant());
             }
         }
     }
