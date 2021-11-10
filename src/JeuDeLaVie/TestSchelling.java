@@ -9,16 +9,18 @@ import java.util.Random;
 
 public class TestSchelling {
 
+    /**
+     * Fonction permettant de tester le modèle schelling à partir d'une génération aléatoire. Il est possible de modifier certains paramètres pour mieux comprendre le modèle.
+     */
 
     public static void main(String[] args) {
 
-        int K = 2;
+        int K = 3;
         int n = 500;
         int m = 500;
         int nSim= 500/10;
         int mSim = 500/10;
         int nbEtat= 3;
-        Queue<CelluleGeneral> file = new LinkedList<>();
         int[][] init = new int[nSim][mSim];
         for (int i = 0; i < nSim; i++) {
             for (int j = 0; j < mSim; j++) {
@@ -33,7 +35,7 @@ public class TestSchelling {
             }
         }
         GUISimulator gui = new GUISimulator(n+10, m+100, Color.BLUE);
-        gui.setSimulable(new GrilleSchelling(nSim, mSim, gui, 0, nbEtat,init, true, file, K, new CelluleGeneral[nSim][mSim]));
+        gui.setSimulable(new GrilleSchelling(nSim, mSim, gui, 0, nbEtat,init, true, K, new CelluleGeneral[nSim][mSim]));
 
     }
 }

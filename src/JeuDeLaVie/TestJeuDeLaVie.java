@@ -5,7 +5,9 @@ import gui.GUISimulator;
 import java.awt.*;
 
 public class TestJeuDeLaVie {
-
+    /**
+     * Fonction de tests du jeu de la vie, en partant de plusieurs positions initiales.
+     */
 
     public static void main(String[] args) {
         int n = 500;

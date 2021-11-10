@@ -7,6 +7,9 @@ import java.util.Random;
 
 public class TestjeuImmigration {
 
+    /**
+     * Fonction de test du jeu de l'immigration à partir d'une grille de génération aléatoire. On peut jouer sur les paramètres en modifiant les valeurs dans la fonction.
+     */
     public static void main(String[] args) {
         int n = 500;
         int m = 500;
