@@ -1,0 +1,25 @@
+---
+title: "Copmte rendu projet de POO"
+author: "Khouani Cassim, Bossuet Céline, Lecamp Titouan"
+date: "19/11/2021"
+output: pdf_document
+---
+
+## Présentation générale du projet
+
+*todo*
+
+## Première Partie: jouons à la baballe
+
+*todo*
+
+## Deuxième Partie: Faisons des automates cellulaires
+
+### Structure du problème 
+
+
+
+
+## Troisième Partie: Suivons les Boids
+
+*todo*
