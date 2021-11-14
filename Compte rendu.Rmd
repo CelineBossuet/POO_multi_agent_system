@@ -58,4 +58,24 @@ Le principe est globalement le même que précedemment. On va recréer une nouve
 
 ## Troisième Partie: Suivons les Boids
 
+Pour cette partie, on a tout d'abord modélisé les Boid de la manière la plus simple possible, comme les Balls. Puis on a fait en sorte qu'il puisse changer sa position, en fonction de son vecteur de vitesse.
+
+Pour simplifier les choses, on a créer une class Vector qui nous a permis de modéliser au mieux nos Boids pour qu'ils correspondent aux caractéristiques que l'on voulait. Cela a aidé aussi pour les méthodes pour ajouter, multiplier, ou encore faire la norme de vecteurs.
+
+## La simulation
+
+Pour la simulation, on avait d'abord crée un Simulateur simple qui crée des Boids aléatoires et les affiche à l'écran. Puis on a décidé de faire une classe abstraite Boid qui permet d'avoir plusieurs types de Boid, si on veut par la suite ajouter des prédateurs par exemple.
+
+## Les events
+
+Pour la gestion des évenements, on a utiliser EventManager qui implémente Simulable et qui permet à notre BoidSimulator d'utiliser la gestion d'évenements.
+
+## Cas limites
+
+Un cas nous est arrivé, c'est quand un boid arrive en limite de fenêtre. On avait alors plusieurs choix: le faire "rebondir" et retourner dans le sens inverse ou le faire traverser la limite et arriver de l'autre côté de l'écran.
+
+C'est cette seconde option que nous avons finalement implémenté.
+
+## Conclusion
+
 *todo*

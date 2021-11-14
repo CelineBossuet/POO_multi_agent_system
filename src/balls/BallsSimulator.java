@@ -1,35 +1,33 @@
-package balls;
+package Balls;
 
-import gui.GUISimulator;
-import gui.Oval;
 import gui.Simulable;
+import gui.Oval;
+import gui.GUISimulator;
 
 import java.awt.*;
 
-public class BallsSimulator implements Simulable {
-    private Balls balls;
-    private GUISimulator gui;
 
-    public BallsSimulator(GUISimulator gui){
-        this.gui = gui;
-        balls = new Balls(5);
+public class BallsSimulator implements Simulable {
+
+    private final Balls balls;
+    private final GUISimulator window;
+
+    public BallsSimulator(GUISimulator gui, Balls balls) {
+        this.balls = balls;
+        this.window =gui;
     }
 
     @Override
     public void next(){
-        balls.translate(10, 10);
-        gui.reset();
-        for(int i = 0; i < balls.getBalls().length; i++) {
-            gui.addGraphicalElement(new Oval(balls.getBalls()[i].x, balls.getBalls()[i].y, Color.WHITE, Color.WHITE, 10));
-        }
+        balls.translate(5,10);
+        window.reset();
+        window.addGraphicalElement(new Oval(balls.getBall1().x, balls.getBall1().y, Color.BLUE, Color.BLUE, 5));
+        window.addGraphicalElement(new Oval(balls.getBall2().x, balls.getBall2().y, Color.RED, Color.RED, 5));
+        window.addGraphicalElement(new Oval(balls.getBall3().x, balls.getBall3().y, Color.WHITE, Color.WHITE, 5));
     }
 
     @Override
-    public void restart(){
+    public void restart() {
         balls.reInit();
-        gui.reset();
-        for(int i = 0; i < balls.getBalls().length; i++) {
-            gui.addGraphicalElement(new Oval(balls.getBalls()[i].x, balls.getBalls()[i].y, Color.WHITE, Color.WHITE, 10));
-        }
     }
 }
