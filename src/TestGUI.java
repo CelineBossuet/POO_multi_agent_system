@@ -1,6 +1,5 @@
 
 import gui.*;
-
 import java.awt.Color;
 
 public class TestGUI {
