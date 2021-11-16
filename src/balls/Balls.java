@@ -1,56 +1,46 @@
 package Balls;
 
-import java.awt.Point;
-
 public class Balls {
+    private int n;
+    private Ball[] balls = new Ball[3];
+    private int[] default_x = new int[3];
+    private int[] default_y = new int[3];
 
-    private final Point ball1;
-    private final Point ball2;
-    private final Point ball3;
-
-    public Point getBall1() {
-        return ball1;
+    public Balls(int n){
+        this.n = n;
+        balls[0] = new Ball(10, 20);
+        default_x[0] = 10;
+        default_y[0] = 20;
+        balls[1] = new Ball(100, 100);
+        default_x[1] = 100;
+        default_y[1] = 100;
+        balls[2] = new Ball(200, 20);
+        default_x[2] = 200;
+        default_y[2] = 20;
     }
 
-    public Point getBall2() {
-        return ball2;
+    public void translate(int dx, int dy){
+        for(int i = 0; i < balls.length; i++){
+            balls[i].translate(dx, dy);
+        }
     }
 
-    public Point getBall3() {
-        return ball3;
+    public void reInit(){
+        for(int i = 0; i < balls.length; i++){
+            balls[i].setLocation(default_x[i], default_y[i]);
+        }
     }
 
-    public Balls() {
-        ball1 = new Point(0,0);
-        ball2 = new Point(66,66);
-        ball3 = new Point(6, 12);
+    public Ball[] getBalls(){
+        return balls;
     }
 
     @Override
-    public String toString() {
-        return "Balls{" +
-                "ball1= (" + ball1.x + "," + ball1.y + ")" +
-                ", ball2=(" + ball2.x + "," + ball2.y + ")" +
-                ", ball3=(" + ball3.x + "," + ball3.y + ")" +
-                '}';
+    public String toString(){
+        String result = "";
+        for(int i = 0; i < balls.length; i++){
+            result += "Point " + i + " : x=" + balls[i].getX() + ", y=" + balls[i].getY() + "\n";
+        }
+        return result;
     }
-
-    void translate(int dx, int dy){
-        ball1.x += dx ;
-        ball1.y += dy;
-        ball2.x += dx;
-        ball2.y += dy;
-        ball3.x += dx;
-        ball3.y += dy;
-    }
-
-    void reInit(){
-        ball1.x = 0;
-        ball1.y = 0;
-        ball2.y = 66;
-        ball2.x = 66;
-        ball3.x = 6;
-        ball3.y = 12;
-    }
-
 }

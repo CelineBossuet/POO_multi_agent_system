@@ -15,7 +15,7 @@ public class TestjeuImmigration {
         int m = 500;
         int nSim= 500/10;
         int mSim = 500/10;
-        int nbEtat= 3;
+        int nbEtat= 6;
         int[][] init = new int[nSim][mSim];
         for (int i = 0; i < nSim; i++) {
             for (int j = 0; j < mSim; j++) {

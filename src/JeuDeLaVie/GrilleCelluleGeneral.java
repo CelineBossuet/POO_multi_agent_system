@@ -13,7 +13,7 @@ public class GrilleCelluleGeneral {
     protected int m;
     private int nbGeneration;
     protected CelluleGeneral[][] tab;
-    protected Color[] tableCouleur = {Color.WHITE, Color.CYAN, Color.BLUE, Color.GREEN,Color.PINK, Color.MAGENTA, Color.ORANGE, Color.YELLOW, Color.LIGHT_GRAY, Color.DARK_GRAY, Color.BLACK};
+    protected Color[] tableCouleur = {Color.WHITE, Color.GREEN, Color.BLUE, Color.CYAN ,Color.PINK, Color.MAGENTA, Color.ORANGE, Color.YELLOW, Color.LIGHT_GRAY, Color.DARK_GRAY, Color.BLACK};
 
     /**
      * Classe mère des Grille permetant l'implémentation de certaines fonctionalités non spécifiques à l'automate cellulaire considéré
