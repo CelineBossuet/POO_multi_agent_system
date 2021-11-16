@@ -62,19 +62,27 @@ Pour cette partie, on a tout d'abord modélisé les Boid de la manière la plus 
 
 Pour simplifier les choses, on a créer une class Vector qui nous a permis de modéliser au mieux nos Boids pour qu'ils correspondent aux caractéristiques que l'on voulait. Cela a aidé aussi pour les méthodes pour ajouter, multiplier, ou encore faire la norme de vecteurs.
 
-## La simulation
+### La simulation
 
 Pour la simulation, on avait d'abord crée un Simulateur simple qui crée des Boids aléatoires et les affiche à l'écran. Puis on a décidé de faire une classe abstraite Boid qui permet d'avoir plusieurs types de Boid, si on veut par la suite ajouter des prédateurs par exemple.
 
-## Les events
+### Les events
 
 Pour la gestion des évenements, on a utiliser EventManager qui implémente Simulable et qui permet à notre BoidSimulator d'utiliser la gestion d'évenements.
 
-## Cas limites
+### Cas limites
 
 Un cas nous est arrivé, c'est quand un boid arrive en limite de fenêtre. On avait alors plusieurs choix: le faire "rebondir" et retourner dans le sens inverse ou le faire traverser la limite et arriver de l'autre côté de l'écran.
 
 C'est cette seconde option que nous avons finalement implémenté.
+
+### Modularité
+
+On a fait en sorte de rendre le code le plus modulable possible. C'est à dire qu'il est très facile de rajouter de nouveaux types de Boids avec d'autres comportements.
+On peut ajouter des boids qui vont attaquer d'autres boids ou tout simplement ajouter de nouvelles règles.
+
+On peut aussi tout simplement changer les valeurs des forces par défaut et les forces maximales pour changer les comportements et tester d'autres fonctionnalités.
+
 
 ## Conclusion
 

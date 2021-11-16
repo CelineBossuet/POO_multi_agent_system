@@ -11,7 +11,14 @@ public class Triangle implements GraphicalElement {
     private Color color;
     private int length;
 
-
+    /**
+     * Classe qui permet de tracer des triangles
+     * @param x
+     * @param y
+     * @param direction
+     * @param color
+     * @param length
+     */
     public Triangle(int x, int y, Vector direction, Color color, int length){
         this.x = x;
         this.y = y;
@@ -20,10 +27,16 @@ public class Triangle implements GraphicalElement {
         this.length = length;
     }
 
+    /**
+     * @return x
+     */
     public int getX() {
         return this.x;
     }
 
+    /**
+     * @return y
+     */
     public int getY() {
         return this.y;
     }
@@ -48,6 +61,11 @@ public class Triangle implements GraphicalElement {
 
     }
 
+    /**
+     * Translate le triangle
+     * @param dx
+     * @param dy
+     */
     public void translate(int dx, int dy) {
         this.x += dx;
         this.y += dy;

@@ -1,8 +1,7 @@
 package boids;
 
-import gui.GUISimulator;
-
 import java.awt.*;
+import gui.GUISimulator;
 import java.util.ArrayList;
 
 public abstract class Boid {
@@ -16,12 +15,17 @@ public abstract class Boid {
 
     protected float force;
 
-    protected float maxVelocity;
-    protected float maxForce;
+    protected float velocityMax;
+    protected float forceMax;
 
     public static GUISimulator gui;
 
-
+    /**
+     * Classe abstraite gérant un Boid de base
+     * @param x
+     * @param y
+     * @param color
+     */
     public Boid(float x, float y, Color color) {
         this.position = new Vector(x,y);
         this.savedPosition = new Vector(x,y);
@@ -32,26 +36,29 @@ public abstract class Boid {
         this.color = color;
         this.triangle = new Triangle((int)x, (int)y, velocity, this.color, 5);
 
-        this.maxVelocity = 5f;
-        this.maxForce = 0.6f;
+        this.velocityMax = 5f;
+        this.forceMax = 0.6f;
 
         // On dessine dès le départ le Boid
         gui.addGraphicalElement(this.triangle);
     }
 
+    /**
+     * Reset la position d'un Boid
+     */
     public void reset() {
         this.position.set(this.savedPosition.getX(), this.savedPosition.getY());
 
         this.triangle.translate((int)(this.position.getX() - this.triangle.getX()), (int)(this.position.getY() - this.triangle.getY()));
     }
 
-    /*
+    /**
      * On met à jour les attributs du Boid
      */
     public void update() {
         this.velocity.add(this.acceleration);
 
-        this.velocity.limit(this.maxVelocity);
+        this.velocity.limit(this.velocityMax);
 
         this.position.add(this.velocity);
 
@@ -94,10 +101,10 @@ public abstract class Boid {
             total.div(n);
 
             total.normalize();
-            total.mult(maxVelocity);
+            total.mult(velocityMax);
 
             Vector force = Vector.sub(total, this.velocity);
-            force.limit(maxForce);
+            force.limit(forceMax);
 
             return force;
         }
@@ -132,10 +139,10 @@ public abstract class Boid {
             total.div(n);
 
             total.normalize();
-            total.mult(maxVelocity);
+            total.mult(velocityMax);
 
             Vector force = Vector.sub(total, velocity);
-            force.limit(maxForce);
+            force.limit(forceMax);
 
             return force;
         }
@@ -176,16 +183,19 @@ public abstract class Boid {
             Vector result = Vector.sub(total, this.position);
 
             result.normalize();
-            result.mult(this.maxVelocity);
+            result.mult(this.velocityMax);
 
             Vector force = Vector.sub(result, this.velocity);
-            force.limit(this.maxForce);
+            force.limit(this.forceMax);
 
             return force;
         }
     }
 
-
+    /**
+     * Ajoute toutes les règles au Boid
+     * @param boids
+     */
     public void addRules(ArrayList<Boid> boids) {
         Vector rule1 = collisions(boids);
         Vector rule2 = direction(boids);

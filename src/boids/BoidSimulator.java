@@ -10,6 +10,12 @@ public class BoidSimulator extends Event {
     // Nombre de Boids
     private int n;
 
+    /**
+     * Simulateur de Boids qui utilise l'event manager
+     * @param gui
+     * @param date
+     * @param n
+     */
     public BoidSimulator(GUISimulator gui, long date, int n) {
         super(date);
         Boid.gui = gui;
@@ -23,6 +29,9 @@ public class BoidSimulator extends Event {
         }
     }
 
+    /**
+     * À chaque tour ajoute les règles et met à jour tous les boids, change la date
+     */
     public void execute() {
         for (Boid boid: this.boids) {
             boid.addRules(boids);
@@ -37,6 +46,9 @@ public class BoidSimulator extends Event {
         getManager().addEvent(this);
     }
 
+    /**
+     * Reset tous les boids
+     */
     public void reset() {
         for (Boid boid: boids) {
             boid.reset();
